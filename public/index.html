@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WMT Compendium</title>
+
+  <!-- Minimal nice styling -->
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>WMT Compendium</h1>
+    <p class="muted">
+      Data source:
+      <a href="https://kayemk.github.io/wmt-compendium-data/" target="_blank" rel="noreferrer">wmt-compendium-data</a>
+      · API:
+      <a href="https://kayemk.github.io/wmt-compendium-data/api/index.json" target="_blank" rel="noreferrer">index.json</a>
+    </p>
+
+    <nav class="tabs" aria-label="Views">
+      <button id="tabUnits" class="tab active" type="button">Units</button>
+      <button id="tabWarbands" class="tab" type="button">Warbands</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="panelUnits">
+      <div class="grid controls">
+        <label>
+          Search
+          <input id="qUnits" type="search" placeholder="name, keyword, id…" />
+        </label>
+
+        <label>
+          Warband
+          <select id="filterWarband">
+            <option value="">All</option>
+          </select>
+        </label>
+
+        <label>
+          Type
+          <select id="filterType">
+            <option value="">All</option>
+            <option value="hero">hero</option>
+            <option value="henchman">henchman</option>
+            <option value="hired_sword">hired_sword</option>
+            <option value="other">other</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="tableWrap">
+        <table id="unitsTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Gold</th>
+              <th>Warbands</th>
+              <th class="small">M</th><th class="small">WS</th><th class="small">BS</th>
+              <th class="small">S</th><th class="small">T</th><th class="small">W</th>
+              <th class="small">I</th><th class="small">A</th><th class="small">Ld</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="panelWarbands" hidden>
+      <div class="grid controls">
+        <label>
+          Search
+          <input id="qWarbands" type="search" placeholder="name, tag, id…" />
+        </label>
+      </div>
+
+      <div class="tableWrap">
+        <table id="warbandsTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Units</th>
+              <th>Tags</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <dialog id="detail">
+      <article>
+        <header>
+          <strong id="detailTitle">Details</strong>
+          <button aria-label="Close" rel="prev" id="detailClose"></button>
+        </header>
+        <pre id="detailBody" class="code"></pre>
+      </article>
+    </dialog>
+
+    <p id="status" class="muted"></p>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
