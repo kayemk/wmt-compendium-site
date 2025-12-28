@@ -5,16 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>WMT Compendium</title>
 
-  <!-- Minimal nice styling -->
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css">
-
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <header class="container">
     <h1>WMT Compendium</h1>
     <p class="muted">
-      Data source:
+      Data:
       <a href="https://kayemk.github.io/wmt-compendium-data/" target="_blank" rel="noreferrer">wmt-compendium-data</a>
       · API:
       <a href="https://kayemk.github.io/wmt-compendium-data/api/index.json" target="_blank" rel="noreferrer">index.json</a>
@@ -51,6 +49,22 @@
             <option value="other">other</option>
           </select>
         </label>
+
+        <label>
+          Sort
+          <select id="sortUnits">
+            <option value="name:asc">Name ↑</option>
+            <option value="name:desc">Name ↓</option>
+            <option value="gold:asc">Gold ↑</option>
+            <option value="gold:desc">Gold ↓</option>
+            <option value="type:asc">Type ↑</option>
+            <option value="type:desc">Type ↓</option>
+          </select>
+        </label>
+
+        <div class="resetWrap">
+          <button id="resetUnits" type="button" class="secondary">Reset</button>
+        </div>
       </div>
 
       <div class="tableWrap">
@@ -77,6 +91,20 @@
           Search
           <input id="qWarbands" type="search" placeholder="name, tag, id…" />
         </label>
+
+        <label>
+          Sort
+          <select id="sortWarbands">
+            <option value="name:asc">Name ↑</option>
+            <option value="name:desc">Name ↓</option>
+            <option value="units:desc">Units ↓</option>
+            <option value="units:asc">Units ↑</option>
+          </select>
+        </label>
+
+        <div class="resetWrap">
+          <button id="resetWarbands" type="button" class="secondary">Reset</button>
+        </div>
       </div>
 
       <div class="tableWrap">
@@ -100,13 +128,20 @@
           <strong id="detailTitle">Details</strong>
           <button aria-label="Close" rel="prev" id="detailClose"></button>
         </header>
-        <pre id="detailBody" class="code"></pre>
+
+        <div id="detailContent"></div>
+
+        <footer class="detailFooter">
+          <button id="copyJson" type="button" class="secondary">Copy JSON</button>
+          <a id="openPage" href="#" role="button">Open page</a>
+        </footer>
       </article>
     </dialog>
 
     <p id="status" class="muted"></p>
   </main>
 
+  <script src="./ui.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
